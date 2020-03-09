@@ -1,0 +1,18 @@
+name: Sync everything with upstream
+
+on:
+  schedule:
+  - cron:  "*/15 * * * *"
+
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: repo-sync
+      uses: repo-sync/github-sync@v2
+      with:
+        source_repo: "cecpk/Rocketmad"
+        source_branch: "*"
+        destination_branch: "*"
+        github_token: ${{ secrets.GITHUB_TOKEN  }}
